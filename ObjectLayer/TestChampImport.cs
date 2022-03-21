@@ -6,7 +6,7 @@ using System.Text.Json;
 
 namespace ObjectLayer
 {
-    internal class TestChampImport
+    internal class Program
     {
         private static void Main(string[] args)
         {
