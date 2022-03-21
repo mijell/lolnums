@@ -1,0 +1,11 @@
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\net48\lolnums.exe.config
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\net48\lolnums.exe
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\net48\lolnums.pdb
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.csproj.AssemblyReference.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.csproj.SuggestedBindingRedirects.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.AssemblyInfoInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.AssemblyInfo.cs
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.csproj.CoreCompileInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.exe
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\net48\lolnums.pdb

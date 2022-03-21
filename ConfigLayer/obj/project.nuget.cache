@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lc7PLdZE9G4c5hv2WkkDv5lRJpZJbeucsnBzZav2vJhUeYqYaQZxckB1Ct/nasOdXMqeGUaLi6eptZcZPhTJ7w==",
+  "dgSpecHash": "c0BF9XtxBesYpzCuHVr+LLcFGVJ05yUlSrB1SC0PisVHgd6zWpt+8OAyXCbQFxwgS4PZNR1OIpWUOmq/wvR6JQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mitchell\\source\\repos\\lolnums\\ConfigLayer\\ConfigLayer.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Mitchell\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512",
-    "C:\\Users\\Mitchell\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\Mitchell\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\Mitchell\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

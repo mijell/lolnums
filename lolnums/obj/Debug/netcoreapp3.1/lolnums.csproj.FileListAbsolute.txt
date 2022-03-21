@@ -1,0 +1,14 @@
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.exe
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.deps.json
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.runtimeconfig.json
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.runtimeconfig.dev.json
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.dll
+C:\Users\Mitchell\source\repos\lolnums\lolnums\bin\Debug\netcoreapp3.1\lolnums.pdb
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.csproj.AssemblyReference.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.AssemblyInfoInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.AssemblyInfo.cs
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.csproj.CoreCompileInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.dll
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.pdb
+C:\Users\Mitchell\source\repos\lolnums\lolnums\obj\Debug\netcoreapp3.1\lolnums.genruntimeconfig.cache

@@ -1,0 +1,14 @@
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.exe
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.deps.json
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.runtimeconfig.json
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.runtimeconfig.dev.json
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.dll
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\bin\Debug\netcoreapp3.1\ObjectLayer.pdb
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.csproj.AssemblyReference.cache
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.AssemblyInfoInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.AssemblyInfo.cs
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.csproj.CoreCompileInputs.cache
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.dll
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.pdb
+C:\Users\Mitchell\source\repos\lolnums\ObjectLayer\obj\Debug\netcoreapp3.1\ObjectLayer.genruntimeconfig.cache

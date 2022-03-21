@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "bc625eea-4c3d-48ac-8e23-c9369aca0a2f": {
+      "ProjectGuid": "bc625eea-4c3d-48ac-8e23-c9369aca0a2f",
+      "DisplayName": "ObjectLayer",
+      "ColorIndex": 0
+    },
+    "9dea1305-bf42-43eb-b460-12f97ac5de1d": {
+      "ProjectGuid": "9dea1305-bf42-43eb-b460-12f97ac5de1d",
+      "DisplayName": "lolnums",
+      "ColorIndex": 1
+    },
+    "7774273a-2ca5-48d7-a9cf-589d2b3b8020": {
+      "ProjectGuid": "7774273a-2ca5-48d7-a9cf-589d2b3b8020",
+      "DisplayName": "ConfigLayer",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
