@@ -6,4 +6,8 @@
     <StartupObject>lolnums.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ObjectLayer\ObjectLayer.csproj" />
+  </ItemGroup>
+
 </Project>

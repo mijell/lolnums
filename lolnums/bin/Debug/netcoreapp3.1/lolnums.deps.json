@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "lolnums/1.0.0": {
+        "dependencies": {
+          "ObjectLayer": "1.0.0"
+        },
         "runtime": {
           "lolnums.dll": {}
+        }
+      },
+      "ObjectLayer/1.0.0": {
+        "runtime": {
+          "ObjectLayer.dll": {}
         }
       }
     }
   },
   "libraries": {
     "lolnums/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ObjectLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
