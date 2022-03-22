@@ -11,6 +11,8 @@ namespace lolnums
     {
         static void Main(string[] args)
         {
+            string dir = "..\\..\\..";
+            Directory.SetCurrentDirectory(dir);
 
             string import_filename = "..\\input\\Champions_11_24.json";
             string jsonString = File.ReadAllText(import_filename);
