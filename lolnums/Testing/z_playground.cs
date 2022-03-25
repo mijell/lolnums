@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
-
+using System.Collections.Generic;
 using lolnums.Tools;
+
+using ObjectLayer.Champion;
 
 using Newtonsoft.Json.Linq;
 
@@ -18,9 +20,21 @@ namespace lolnums.Testing
             string jsonString = File.ReadAllText(import_filename);
 
             JObject myObj = JObject.Parse(jsonString);
-            var champ = myObj["Aatrox"];
+            List<Champion> champList = new List<Champion>();
 
-            Console.WriteLine(champ["stats"]["hp"]);
+            foreach (JProperty token in myObj.Children())
+            {
+                Champion nChampion = new Champion();
+                nChampion.initChampionFromJson(token);
+
+                champList.Add(nChampion);
+
+            }
+
+            foreach (Champion champ in champList)
+            {
+                Console.WriteLine(champ.name + ":: Base AD = " + champ.baseStats.base_ad);
+            }
         }
     }
 }
