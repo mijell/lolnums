@@ -1,0 +1,25 @@
+﻿##############
+## Lolconfig.txt
+##############
+
+##	Lines that start with a "#" will be ignored
+##  Include will load a seperate file, order matters, values later on will override earlier ones, so an include at the end can override original files
+##
+##  Other syntax to be determined
+##  Include 
+
+#####################
+## Basic
+#####################
+
+# j,z and m playgrounds are areas for us to just put whatever want respectively, where run_eval would presumably to run our "production code"
+
+#program z_playground
+#program j_playground
+#program m_playground
+#program run_eval
+
+
+
+# Do not source control mylolconfig.txt, that way we can have our own personal overrides without it saying it being a diff
+include myconfig.txt

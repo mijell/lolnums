@@ -14,4 +14,8 @@
     <ProjectReference Include="..\ObjectLayer\ObjectLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Evaluation\" />
+  </ItemGroup>
+
 </Project>
