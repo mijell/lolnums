@@ -4,8 +4,5 @@ using System.Text;
 
 namespace ObjectLayer.Champions
 {
-    public class ChampionList
-    {
-        public List<Champion> data;
-    }
+
 }
