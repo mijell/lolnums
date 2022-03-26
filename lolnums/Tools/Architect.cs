@@ -11,11 +11,7 @@ namespace UserFacing.Tools
         /// Members
         //////////////////////////
 
-        public string name { get; set; }
 
-        public ChampionStatus status { get; set; }
-
-        public BaseStats baseStats { get; set; }
 
         ///////////////////////////
         /// Functions
