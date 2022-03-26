@@ -20,21 +20,25 @@ namespace lolnums.Testing
             string jsonString = File.ReadAllText(import_filename);
 
             JObject myObj = JObject.Parse(jsonString);
-            List<Champion> champList = new List<Champion>();
+
+            Dictionary<string, Champion> champDict = new Dictionary<string, Champion>();
 
             foreach (JProperty token in myObj.Children())
             {
                 Champion nChampion = new Champion();
                 nChampion.initChampionFromJson(token);
 
-                champList.Add(nChampion);
+                champDict[nChampion.name.ToLower()] = nChampion;
+
 
             }
 
-            foreach (Champion champ in champList)
+            foreach (KeyValuePair<string, Champion> champ in champDict)
             {
-                Console.WriteLine(champ.name + ":: Base AD = " + champ.baseStats.base_ad);
+                Console.WriteLine(champ.Value.name + ":: Base AD = " + champ.Value.baseStats.base_ad);
             }
+
+            Console.WriteLine("Ahri has " + champDict["Ahri"].baseStats.base_ad + " base attack damage");
         }
     }
 }
