@@ -1,9 +1,9 @@
 ﻿
 using System;
 using System.IO;
-using lolnums.Tools;
+using UserFacing.Tools;
 
-using lolnums.Testing;
+using UserFacing.Testing;
 
 namespace lolnums
 {

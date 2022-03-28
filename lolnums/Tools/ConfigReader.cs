@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace lolnums.Tools
+namespace UserFacing.Tools
 {
     internal class ConfigReader
     {

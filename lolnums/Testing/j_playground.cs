@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using lolnums.Tools;
+using UserFacing.Tools;
 
-namespace lolnums.Testing
+namespace UserFacing.Testing
 {
     internal class j_playground
     {
