@@ -8,7 +8,7 @@ namespace UserFacing.Testing
 {
     internal class j_playground
     {
-        public void play(ConfigReader config)
+        public void play(Architect architect)
         {
             Console.WriteLine("Running Jason's Playground.");
         }

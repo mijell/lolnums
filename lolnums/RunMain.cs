@@ -14,33 +14,33 @@ namespace lolnums
             string dir = "..\\..\\..";
             Directory.SetCurrentDirectory(dir);
 
-            ConfigReader config          = new ConfigReader();
             string       config_filename = "Config_files\\lolconfig.txt";
 
-            config.loadFile(config_filename);
+            Architect architect = new Architect();
+            architect.initArchitect(config_filename);
 
-            if (config.loaded_flag)
+            if (architect.configReader.loaded_flag)
             {
-                switch (config.program_type)
+                switch (architect.configReader.program_type)
                 {
                     case "run_eval":
                         Console.WriteLine("Run main evaluation.");
                         break;
                     case "z_playground":
                         z_playground pg_z = new z_playground();
-                        pg_z.play(config);
+                        pg_z.play(architect);
                         break;
                     case "m_playground":
                         m_playground pg_m = new m_playground();
-                        pg_m.play(config);
+                        pg_m.play(architect);
                         break;
                     case "j_playground":
                         j_playground pg_j = new j_playground();
-                        pg_j.play(config);
+                        pg_j.play(architect);
                         break;
 
                     default:
-                        Console.WriteLine("Unknown Program type [" + config.program_type + "]. Exiting...");
+                        Console.WriteLine("Unknown Program type [" + architect.configReader.program_type + "]. Exiting...");
                         break;
 
                 }

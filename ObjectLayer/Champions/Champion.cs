@@ -25,6 +25,21 @@ namespace ObjectLayer.Champion
             name        = "";
             baseStats   = new BaseStats ();   
             status      = new ChampionStatus ();
+
+        }
+
+        public Champion shallowCopy()
+        {
+            return (Champion) this.MemberwiseClone();
+        }
+
+        public Champion deepCopy()
+        {
+            Champion copy = new Champion();
+            copy.baseStats = this.baseStats.shallowCopy();
+            copy.status = this.status.shallowCopy();
+
+            return copy;
         }
 
         public void initChampionFromJson(JProperty jProperty)
@@ -84,6 +99,11 @@ namespace ObjectLayer.Champion
 
         public int armor;
         public int magic_resist;
+
+        public ChampionStatus shallowCopy()
+        {
+            return (ChampionStatus)this.MemberwiseClone();
+        }
     }
 
 
@@ -120,6 +140,10 @@ namespace ObjectLayer.Champion
         public double movespeed;
         public double atkRange;
 
+        public BaseStats shallowCopy()
+        {
+            return (BaseStats)this.MemberwiseClone();
+        }
     }
 
 }

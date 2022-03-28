@@ -12,6 +12,8 @@
 ## Basic
 #####################
 
+ChampionJson ..\\input\\Champions_11_24.json
+
 # j,z and m playgrounds are areas for us to just put whatever want respectively, where run_eval would presumably to run our "production code"
 
 #program z_playground

@@ -9,6 +9,7 @@ namespace UserFacing.Tools
     {
         public bool         loaded_flag  { get; set; } 
         public string       program_type { get; set; }
+        public string       championJsonFilename { get; set; }
 
         public ConfigReader()
         {
@@ -40,6 +41,10 @@ namespace UserFacing.Tools
                     if (command == "program")
                     {
                         program_type = value;
+                    }
+                    else if (command == "ChampionJson")
+                    {
+                        championJsonFilename = value;
                     }
                     else if (command == "include")
                     {
