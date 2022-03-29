@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using UserFacing.Tools;
 
@@ -12,6 +10,5 @@ namespace UserFacing.Testing
         {
             Console.WriteLine("Running Mitch's Playground.");
         }
-
     }
 }

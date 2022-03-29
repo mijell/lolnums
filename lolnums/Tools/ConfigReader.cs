@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace UserFacing.Tools
 {
     internal class ConfigReader
     {
-        public bool         loaded_flag  { get; set; } 
-        public string       program_type { get; set; }
-        public string       championJsonFilename { get; set; }
-
         public ConfigReader()
         {
             loaded_flag = false;
             program_type = "";
         }
 
+        public string championJsonFilename { get; set; }
+        public bool loaded_flag { get; set; }
+        public string program_type { get; set; }
+
         public void loadFile(string filename)
         {
             FileInfo fileInfo = new FileInfo(filename);
             string filepath = fileInfo.DirectoryName;
-            
+
             loaded_flag = true;
 
             //Try to open the config file
@@ -50,12 +48,8 @@ namespace UserFacing.Tools
                     {
                         loadFile(filepath + "\\" + value);
                     }
-
                 }
             }
-
-
         }
-
     }
 }

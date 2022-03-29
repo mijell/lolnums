@@ -1,8 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ObjectLayer.Champions
+﻿namespace ObjectLayer.Champions
 {
-
 }

@@ -1,25 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using ObjectLayer.Champion;
+using System.Collections.Generic;
+using System.IO;
 
 namespace UserFacing.Tools
 {
     internal class Architect
     {
-
         ///////////////////////////
         /// Members
-        //////////////////////////
-
-        public ConfigReader configReader { get; set; }
-
-        public Dictionary<string, Champion> champDict { get; set; }
-
-        ///////////////////////////
-        /// Functions
         //////////////////////////
 
         public Architect()
@@ -28,6 +17,12 @@ namespace UserFacing.Tools
             champDict = new Dictionary<string, Champion>();
         }
 
+        public Dictionary<string, Champion> champDict { get; set; }
+        public ConfigReader configReader { get; set; }
+
+        ///////////////////////////
+        /// Functions
+        //////////////////////////
         public void initArchitect(string configFilename)
         {
             //Read in config
@@ -39,7 +34,6 @@ namespace UserFacing.Tools
 
         private void initChampionDictionary()
         {
-            
             string jsonString = File.ReadAllText(configReader.championJsonFilename);
 
             JObject myObj = JObject.Parse(jsonString);

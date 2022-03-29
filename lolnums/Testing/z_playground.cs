@@ -1,11 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using ObjectLayer.Champion;
+using System;
 using System.Collections.Generic;
-
-using ObjectLayer.Champion;
-
-using Newtonsoft.Json.Linq;
-
 using UserFacing.Tools;
 
 namespace UserFacing.Testing
@@ -28,7 +23,6 @@ namespace UserFacing.Testing
 
             Console.WriteLine("Brand(dict) has " + champDict["brand"].baseStats.base_ad + " base attack damage");
             Console.WriteLine("Brand(obj)  has " + brand_copy.baseStats.base_ad + " base attack damage");
-
         }
     }
 }

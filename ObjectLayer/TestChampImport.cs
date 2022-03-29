@@ -1,8 +1,4 @@
-﻿using ObjectLayer.Champions;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
+﻿using System;
 
 namespace ObjectLayer
 {
@@ -10,7 +6,6 @@ namespace ObjectLayer
     {
         private static void Main(string[] args)
         {
-            
             Console.WriteLine("Hello");
         }
     }
