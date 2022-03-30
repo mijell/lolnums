@@ -14,7 +14,7 @@ namespace UserFacing.Testing
             Dictionary<string, Champion> champDict = architect.champDict;
 
             //Test code
-            Champion brand_copy = champDict["brand"].deepCopy();
+            Champion brand_copy = champDict["brand"].copyDeep();
             Console.WriteLine("Brand(dict) has " + champDict["brand"].baseStats.base_ad + " base attack damage");
             Console.WriteLine("Brand(obj)  has " + brand_copy.baseStats.base_ad + " base attack damage");
 

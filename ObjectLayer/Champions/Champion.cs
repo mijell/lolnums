@@ -30,7 +30,7 @@ namespace ObjectLayer.Champion
         public double mr_per_level;
         public double regen_mana_per_level;
 
-        public BaseStats shallowCopy()
+        public BaseStats copyShallow()
         {
             return (BaseStats)this.MemberwiseClone();
         }
@@ -54,13 +54,18 @@ namespace ObjectLayer.Champion
             status      = new ChampionStatus();
         }
 
-        public Champion deepCopy()
+        public Champion copyDeep()
         {
             Champion copy = new Champion();
-            copy.baseStats = this.baseStats.shallowCopy();
-            copy.status = this.status.shallowCopy();
+            copy.baseStats = this.baseStats.copyShallow();
+            copy.status = this.status.copyShallow();
 
             return copy;
+        }
+
+        public Champion copyShallow()
+        {
+            return (Champion)this.MemberwiseClone();
         }
 
         public void initChampionFromJson(JProperty jProperty)
@@ -98,14 +103,6 @@ namespace ObjectLayer.Champion
         public void setChampionLevel(int _level)
         {
         }
-
-        ///////////////////////////
-        /// Functions
-        //////////////////////////
-        public Champion shallowCopy()
-        {
-            return (Champion)this.MemberwiseClone();
-        }
     }
 
     //A class defining the live parameters of a champion
@@ -122,7 +119,7 @@ namespace ObjectLayer.Champion
         public int max_hp;
         public int max_mana;
 
-        public ChampionStatus shallowCopy()
+        public ChampionStatus copyShallow()
         {
             return (ChampionStatus)this.MemberwiseClone();
         }
