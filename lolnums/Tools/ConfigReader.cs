@@ -5,15 +5,17 @@ namespace UserFacing.Tools
 {
     internal class ConfigReader
     {
+        public string championJsonFilename { get; set; }
+
+        public bool loaded_flag { get; set; }
+
+        public string program_type { get; set; }
+
         public ConfigReader()
         {
             loaded_flag = false;
             program_type = "";
         }
-
-        public string championJsonFilename { get; set; }
-        public bool loaded_flag { get; set; }
-        public string program_type { get; set; }
 
         public void loadFile(string filename)
         {

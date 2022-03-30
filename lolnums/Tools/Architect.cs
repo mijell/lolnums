@@ -7,9 +7,9 @@ namespace UserFacing.Tools
 {
     internal class Architect
     {
-        ///////////////////////////
-        /// Members
-        //////////////////////////
+        public Dictionary<string, Champion> champDict { get; set; }
+
+        public ConfigReader configReader { get; set; }
 
         public Architect()
         {
@@ -17,12 +17,6 @@ namespace UserFacing.Tools
             champDict = new Dictionary<string, Champion>();
         }
 
-        public Dictionary<string, Champion> champDict { get; set; }
-        public ConfigReader configReader { get; set; }
-
-        ///////////////////////////
-        /// Functions
-        //////////////////////////
         public void initArchitect(string configFilename)
         {
             //Read in config

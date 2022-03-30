@@ -3,7 +3,10 @@ using System;
 
 namespace ObjectLayer.Champion
 {
-    //A class defining the base parameters of a champion
+    /// <summary>
+    /// Defines the initial parameters of a champion
+    /// </summary>
+
     public class BaseStats
     {
         public double ad_per_level;
@@ -33,11 +36,16 @@ namespace ObjectLayer.Champion
         }
     }
 
+    /// <summary>
+    /// A base class to be inhereted by the specific champions.
+    /// </summary>
     public class Champion
     {
-        ///////////////////////////
-        /// Members
-        //////////////////////////
+        public BaseStats baseStats { get; set; }
+
+        public string name { get; set; }
+
+        public ChampionStatus status { get; set; }
 
         public Champion()
         {
@@ -45,11 +53,6 @@ namespace ObjectLayer.Champion
             baseStats   = new BaseStats();
             status      = new ChampionStatus();
         }
-
-        public BaseStats baseStats { get; set; }
-        public string name { get; set; }
-
-        public ChampionStatus status { get; set; }
 
         public Champion deepCopy()
         {
