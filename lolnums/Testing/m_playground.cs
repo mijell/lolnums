@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UserFacing.Tools;
+using CalculationLayer;
 
 namespace UserFacing.Testing
 {
@@ -9,6 +10,10 @@ namespace UserFacing.Testing
         public void play(Architect architect)
         {
             Console.WriteLine("Running Mitch's Playground.");
+
+            int damageTaken = CalcDamageInstance.CalcPostMitigationDamage(1000, 25);
+
+            Console.WriteLine("Total physical/magic damage after armor/MR: " + damageTaken);
         }
     }
 }

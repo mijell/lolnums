@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CalculationLayer\CalculationLayer.csproj" />
     <ProjectReference Include="..\ObjectLayer\ObjectLayer.csproj" />
   </ItemGroup>
 

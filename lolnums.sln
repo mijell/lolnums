@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigLayer", "ConfigLayer\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserFacing", "lolnums\UserFacing.csproj", "{B7AABAF4-92FC-43D6-A788-F3F0DED7B67D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculationLayer", "CalculationLayer\CalculationLayer.csproj", "{0F9A6623-A8A0-4EAD-AB53-4FCEDF099B51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B7AABAF4-92FC-43D6-A788-F3F0DED7B67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7AABAF4-92FC-43D6-A788-F3F0DED7B67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7AABAF4-92FC-43D6-A788-F3F0DED7B67D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F9A6623-A8A0-4EAD-AB53-4FCEDF099B51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F9A6623-A8A0-4EAD-AB53-4FCEDF099B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F9A6623-A8A0-4EAD-AB53-4FCEDF099B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F9A6623-A8A0-4EAD-AB53-4FCEDF099B51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
