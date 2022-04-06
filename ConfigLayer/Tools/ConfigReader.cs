@@ -19,6 +19,82 @@ namespace ConfigLayer.Tools
             program_type = "";
         }
 
+        /// <summary>
+        /// This 100% can be done in a smarter way, I just want to get a list of all values for a
+        /// given parameter in a single string. Please improve if you want.
+        /// </summary>
+        /// <param name="line">             </param>
+        /// <param name="paramName">        </param>
+        /// <param name="removeQuotes_flag"></param>
+        /// <returns></returns>
+        public static List<string> getMultiParamFromLine(string line, string paramName, bool removeQuotes_flag)
+        {
+            List<string> result = new List<string>();
+            string value = "";
+
+            do
+            {
+                int finalIndex = -1;
+                value = "";
+                if (line.Contains(paramName + "="))
+                {
+                    string paramEq = paramName + "=";
+                    int index = line.IndexOf(paramName + "=");
+                    int start_index = index + paramEq.Length;
+                    int look_index = start_index;
+
+                    //Check for quotes
+                    char nextChar = line[start_index];
+                    if (nextChar == '\"')
+                    {
+                        int q2_index = line.IndexOf('\"', start_index + 1);
+                        if (q2_index != -1)
+                        {
+                            look_index = q2_index;
+                        }
+                    }
+
+                    int sub_index = line.IndexOf(":", look_index);
+                    if (sub_index != -1)
+                    {
+                        finalIndex = sub_index;
+                        value = line.Substring(start_index, sub_index - start_index);
+                    }
+                    else
+                    {
+                        finalIndex = start_index;
+                        value = line.Substring(start_index);
+                    }
+                }
+                else if (line.Contains(paramName + ":") || line.EndsWith(paramName))
+                {
+                    value = "True";
+
+                    finalIndex = line.IndexOf(paramName) + paramName.Length;
+                }
+
+                //Trim line
+                if (finalIndex != -1)
+                {
+                    line = line.Substring(finalIndex);
+                }
+
+                if (removeQuotes_flag &&
+                    value.StartsWith("\"") &&
+                    value.EndsWith("\""))
+                {
+                    value = value.Substring(1, value.Length - 2);
+                }
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    result.Add(value);
+                }
+            } while (!string.IsNullOrEmpty(value));
+
+            return result;
+        }
+
         public static string getParamFromLine(string line, string paramName, string defaultValue, bool removeQuotes_flag)
         {
             string returnString = defaultValue;

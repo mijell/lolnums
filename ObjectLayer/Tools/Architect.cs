@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
 using ObjectLayer.Champions;
+using ObjectLayer.Items;
 using System.Collections.Generic;
 using System.IO;
 using ConfigLayer.Tools;
 
-namespace UserFacing.Tools
+namespace ObjectLayer.Tools
 {
-    internal class Architect
+    public class Architect
     {
         public Dictionary<string, Champion> champDict { get; set; }
 
@@ -46,14 +47,36 @@ namespace UserFacing.Tools
             {
                 champion = new Akshan();
             }
+            else
+            {
+                champDict.TryGetValue(championName, out champion);
+            }
 
             if (champion != null)
             {
                 //Copy in the base stats
-                champion.copyStats(champDict[championName.ToLower()]);
+                champion.copyBase(champDict[championName.ToLower()]);
+                champion.myArchitect = this;
             }
 
             return champion;
+        }
+
+        public Item getItemByName(string itemName)
+        {
+            Item item = null;
+
+            if (itemName == "DivineBlunderer")
+            {
+                //Get pranked idiot
+            }
+            else
+            {
+                item = new Item();
+                item.name = itemName;
+            }
+
+            return item;
         }
 
         private void initChampionDictionary()

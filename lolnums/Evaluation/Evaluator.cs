@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using UserFacing.Tools;
+using ObjectLayer.Tools;
 using ConfigLayer.Tools;
 
 namespace UserFacing.Evaluation
@@ -68,13 +68,19 @@ namespace UserFacing.Evaluation
                         {
                             string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
                             attacker = architect.getChampionByName(championName.ToLower());
-                            attacker.setChampionLoadout(value);
+                            if (attacker != null)
+                            {
+                                attacker.setChampionLoadout(value);
+                            }
                         }
                         else if (key == "Defender")
                         {
                             string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
                             defender = architect.getChampionByName(championName.ToLower());
-                            defender.setChampionLoadout(value);
+                            if (defender != null)
+                            {
+                                defender.setChampionLoadout(value);
+                            }
                         }
                         else if (key == "DefenderAlt")
                         {
@@ -96,6 +102,27 @@ namespace UserFacing.Evaluation
                         continuedLine += trimmedLine;
                     }
                 }
+            }
+        }
+
+        public void summarizeEvaluation()
+        {
+            if (attacker != null)
+            {
+                attacker.printSummary();
+            }
+            else
+            {
+                Console.WriteLine("No Attacker declared...");
+            }
+
+            if (defender != null)
+            {
+                defender.printSummary();
+            }
+            else
+            {
+                Console.WriteLine("No Defender declared...");
             }
         }
 

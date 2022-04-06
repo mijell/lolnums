@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Evaluation\" />
+    <Folder Include="Tools\" />
   </ItemGroup>
 
 </Project>

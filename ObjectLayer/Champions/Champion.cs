@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using ConfigLayer.Tools;
+using ObjectLayer.Items;
+using ObjectLayer.Tools;
 
 namespace ObjectLayer.Champions
 {
@@ -48,15 +51,22 @@ namespace ObjectLayer.Champions
 
         public ChampionStatus status { get; set; }
 
+        public List<Item> items { get; set; }
+
+        public Architect myArchitect { get; set; }
+
         public Champion()
         {
             name        = "";
             baseStats   = new BaseStats();
             status      = new ChampionStatus();
+            items       = new List<Item>();
+            myArchitect = null;
         }
 
-        public virtual void copyStats(Champion oChamp)
+        public virtual void copyBase(Champion oChamp)
         {
+            name      = oChamp.name;
             baseStats = oChamp.baseStats.copyShallow();
             status    = oChamp.status.copyShallow();
         }
@@ -123,7 +133,51 @@ namespace ObjectLayer.Champions
 
         public virtual void setChampionLoadout(string parameter_string)
         {
-            string level = ConfigReader.getParamFromLine(parameter_string, "ChampionName", "", true);
+            string level = ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true);
+            setChampionLevel(Int32.Parse(level));
+
+            parseParameter("ChampionLevel", ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true));
+            parseMultiParameter("Item", ConfigReader.getMultiParamFromLine(parameter_string, "Item", true));
+        }
+
+        public virtual void parseMultiParameter(string key, List<string> multiValue)
+        {
+            foreach (string value in multiValue)
+            {
+                parseParameter(key, value);
+            }
+        }
+
+        public virtual void parseParameter(string key, string value)
+        {
+            if (myArchitect != null)
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    if (key == "Item") { items.Add(myArchitect.getItemByName(value)); }
+                    else if (key == "ChampionLevel") { setChampionLevel(Int32.Parse(value)); }
+                    else if (key == "tmp") { }
+                    else if (key == "example") { }
+                }
+            }
+        }
+
+        public virtual void printSummary()
+        {
+            string itemString = "";
+            bool firstItem_flag = true;
+            foreach (Item item in items)
+            {
+                if (!firstItem_flag) { itemString += ", "; }
+                itemString += item.name;
+            }
+
+            Console.WriteLine(name);
+            Console.WriteLine("\tLevel - " + status.level);
+            Console.WriteLine("\tAD    - " + status.attack_damage);
+            Console.WriteLine("\tArmor - " + status.armor);
+            Console.WriteLine("\tMR    - " + status.magic_resist);
+            Console.WriteLine("\tItems - " + itemString);
         }
     }
 

@@ -1,0 +1,15 @@
+﻿#Attacker ChampionName="Akshan" \
+#        :ChampionLevel=11 \
+#        :Item="Eclipse" \
+#        :Item="SeryldasGrudge"
+
+Attacker ChampionName="Akshan" \
+        :ChampionLevel=11 \
+        :Item="KrakenSlayer" \
+        :Item="LordDominicksRevenge"
+
+Defender ChampionName="TahmKench" \
+        :ChampionLevel=18 \
+        :help="holymoly:cracka" \
+        :Item1="Zhonya" \
+        :HasNoLife
