@@ -170,6 +170,7 @@ namespace ObjectLayer.Champions
             {
                 if (!firstItem_flag) { itemString += ", "; }
                 itemString += item.name;
+                firstItem_flag = false;
             }
 
             Console.WriteLine(name);
