@@ -2,6 +2,7 @@
 using System.IO;
 using UserFacing.Testing;
 using UserFacing.Tools;
+using UserFacing.Evaluation;
 
 namespace lolnums
 {
@@ -23,6 +24,8 @@ namespace lolnums
                 {
                     case "run_eval":
                         Console.WriteLine("Run main evaluation.");
+                        Evaluator evaluator = new Evaluator();
+                        evaluator.loadEvaluation(architect);
                         break;
 
                     case "z_playground":

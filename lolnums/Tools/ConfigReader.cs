@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace UserFacing.Tools
 {
     internal class ConfigReader
     {
         public string championJsonFilename { get; set; }
-
+        public Dictionary<string, string> configDict { get; set; }
         public bool loaded_flag { get; set; }
 
         public string program_type { get; set; }
@@ -14,6 +15,7 @@ namespace UserFacing.Tools
         public ConfigReader()
         {
             loaded_flag = false;
+            configDict = new Dictionary<string, string>();
             program_type = "";
         }
 
@@ -37,6 +39,8 @@ namespace UserFacing.Tools
 
                     //Console.WriteLine("Command: " + command);
                     //Console.WriteLine("Value: " + value);
+
+                    configDict[command] = value;
 
                     if (command == "program")
                     {

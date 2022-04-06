@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using ObjectLayer.Champion;
+using ObjectLayer.Champions;
 using System.Collections.Generic;
 using System.IO;
 
@@ -15,6 +15,17 @@ namespace UserFacing.Tools
         {
             configReader = new ConfigReader();
             champDict = new Dictionary<string, Champion>();
+        }
+
+        public Champion getFullChampion(string champion_name)
+        {
+            Champion rChampion = null;
+            if (champion_name == "akshan")
+            {
+                rChampion = new Akshan();
+            }
+
+            return rChampion;
         }
 
         public void initArchitect(string configFilename)

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 
-namespace ObjectLayer.Champion
+namespace ObjectLayer.Champions
 {
     /// <summary>
     /// Defines the initial parameters of a champion
@@ -12,10 +12,10 @@ namespace ObjectLayer.Champion
         public double ad_per_level;
         public double armor_per_level;
         public double atkRange;
-        public double atkSpeed;
-        public double atkSpeed_per_leve;
+        public double atkSpeed_per_level;
         public double base_ad;
         public double base_armor;
+        public double base_atkSpeed;
         public double base_hp;
         public double base_hp_regen;
         public double base_mana;
@@ -54,7 +54,7 @@ namespace ObjectLayer.Champion
             status      = new ChampionStatus();
         }
 
-        public Champion copyDeep()
+        public virtual Champion copyDeep()
         {
             Champion copy = new Champion();
             copy.baseStats = this.baseStats.copyShallow();
@@ -63,7 +63,7 @@ namespace ObjectLayer.Champion
             return copy;
         }
 
-        public Champion copyShallow()
+        public virtual Champion copyShallow()
         {
             return (Champion)this.MemberwiseClone();
         }
@@ -93,8 +93,8 @@ namespace ObjectLayer.Champion
                 baseStats.crit_per_level        =  Convert.ToDouble(statsObject.Property("critperlevel").Value.ToString());
                 baseStats.base_ad               =  Convert.ToDouble(statsObject.Property("attackdamage").Value.ToString());
                 baseStats.ad_per_level          =  Convert.ToDouble(statsObject.Property("attackdamageperlevel").Value.ToString());
-                baseStats.atkSpeed              =  Convert.ToDouble(statsObject.Property("attackspeedperlevel").Value.ToString());
-                baseStats.atkSpeed_per_leve     =  Convert.ToDouble(statsObject.Property("attackspeed").Value.ToString());
+                baseStats.atkSpeed_per_level    =  Convert.ToDouble(statsObject.Property("attackspeedperlevel").Value.ToString());
+                baseStats.base_atkSpeed         =  Convert.ToDouble(statsObject.Property("attackspeed").Value.ToString());
                 baseStats.atkRange              =  Convert.ToDouble(statsObject.Property("attackrange").Value.ToString());
                 baseStats.movespeed             =  Convert.ToDouble(statsObject.Property("movespeed").Value.ToString());
             }
@@ -102,22 +102,32 @@ namespace ObjectLayer.Champion
 
         public void setChampionLevel(int _level)
         {
+            status.level               = _level;
+            status.max_hp              = baseStats.base_hp + baseStats.hp_per_level * _level;
+            status.max_mana            = baseStats.base_mana + baseStats.mana_per_level * _level;
+            status.armor               = baseStats.base_armor + baseStats.armor_per_level * _level;
+            status.magic_resist        = baseStats.base_mr + baseStats.mr_per_level * _level;
+            status.attack_damage       = baseStats.base_ad + baseStats.ad_per_level * _level;
+            status.atkSpeed            = baseStats.base_atkSpeed + baseStats.atkSpeed_per_level * _level;
+
+            status.hp   = status.max_hp;
+            status.mana = status.max_mana;
         }
     }
 
     //A class defining the live parameters of a champion
     public class ChampionStatus
     {
-        public int ability_power;
-        public int armor;
-        public int attack_damage;
-        public int hp;
-        public int level;
-        public int magic_resist;
-        public int mana;
-
-        public int max_hp;
-        public int max_mana;
+        public double ability_power;
+        public double armor;
+        public double atkSpeed;
+        public double attack_damage;
+        public double hp;
+        public double level;
+        public double magic_resist;
+        public double mana;
+        public double max_hp;
+        public double max_mana;
 
         public ChampionStatus copyShallow()
         {

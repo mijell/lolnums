@@ -21,6 +21,7 @@ ChampionJson ..\\input\\Champions_11_24.json
 #program m_playground
 #program run_eval
 
+EvalFilename Config_files\\myEval.txt
 
 
 # Do not source control mylolconfig.txt, that way we can have our own personal overrides without it saying it being a diff
