@@ -2,6 +2,7 @@
 using ObjectLayer.Champions;
 using System.Collections.Generic;
 using System.IO;
+using ConfigLayer.Tools;
 
 namespace UserFacing.Tools
 {
@@ -35,6 +36,24 @@ namespace UserFacing.Tools
 
             //Initialize champion dictionary
             initChampionDictionary();
+        }
+
+        public Champion getChampionByName(string championName)
+        {
+            Champion champion = null;
+
+            if (championName == "akshan")
+            {
+                champion = new Akshan();
+            }
+
+            if (champion != null)
+            {
+                //Copy in the base stats
+                champion.copyStats(champDict[championName.ToLower()]);
+            }
+
+            return champion;
         }
 
         private void initChampionDictionary()

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using ConfigLayer.Tools;
 
 namespace ObjectLayer.Champions
 {
@@ -52,6 +53,12 @@ namespace ObjectLayer.Champions
             name        = "";
             baseStats   = new BaseStats();
             status      = new ChampionStatus();
+        }
+
+        public virtual void copyStats(Champion oChamp)
+        {
+            baseStats = oChamp.baseStats.copyShallow();
+            status    = oChamp.status.copyShallow();
         }
 
         public virtual Champion copyDeep()
@@ -112,6 +119,11 @@ namespace ObjectLayer.Champions
 
             status.hp   = status.max_hp;
             status.mana = status.max_mana;
+        }
+
+        public virtual void setChampionLoadout(string parameter_string)
+        {
+            string level = ConfigReader.getParamFromLine(parameter_string, "ChampionName", "", true);
         }
     }
 

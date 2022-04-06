@@ -2,9 +2,9 @@
 using System.IO;
 using System.Collections.Generic;
 
-namespace UserFacing.Tools
+namespace ConfigLayer.Tools
 {
-    internal class ConfigReader
+    public class ConfigReader
     {
         public string championJsonFilename { get; set; }
         public Dictionary<string, string> configDict { get; set; }
@@ -17,6 +17,49 @@ namespace UserFacing.Tools
             loaded_flag = false;
             configDict = new Dictionary<string, string>();
             program_type = "";
+        }
+
+        public static string getParamFromLine(string line, string paramName, string defaultValue, bool removeQuotes_flag)
+        {
+            string returnString = defaultValue;
+
+            if (line.Contains(paramName + "="))
+            {
+                string paramEq = paramName + "=";
+                int index = line.IndexOf(paramName + "=");
+                int start_index = index + paramEq.Length;
+                int look_index = start_index;
+
+                //Check for quotes
+                char nextChar = line[start_index];
+                if (nextChar == '\"')
+                {
+                    int q2_index = line.IndexOf('\"', start_index + 1);
+                    if (q2_index != -1)
+                    {
+                        look_index = q2_index;
+                    }
+                }
+
+                int sub_index = line.IndexOf(":", look_index);
+                if (sub_index != -1)
+                {
+                    returnString = line.Substring(start_index, sub_index - start_index);
+                }
+            }
+            else if (line.Contains(paramName + ":") || line.EndsWith(paramName))
+            {
+                returnString = "True";
+            }
+
+            if (removeQuotes_flag &&
+                returnString.StartsWith("\"") &&
+                returnString.EndsWith("\""))
+            {
+                returnString = returnString.Substring(1, returnString.Length - 2);
+            }
+
+            return returnString;
         }
 
         public void loadFile(string filename)

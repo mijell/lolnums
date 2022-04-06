@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UserFacing.Tools;
+using ConfigLayer.Tools;
 
 namespace UserFacing.Evaluation
 {
@@ -19,21 +20,28 @@ namespace UserFacing.Evaluation
     /// Class for defining an action in the evaluation (AutoAttack, QWER etc)
     internal class EvalAction
     {
+        private string actionName;
         private ActionType actionType;
 
-        private List<Champion> auxTargetChampions;
-        private Champion primaryTargetChampion;
-        private double timeInEval_s;
         private Champion userChampion;
+        private Champion primaryTargetChampion;
+        private List<Champion> auxTargetChampions;
+
+        private Dictionary<string, string> parameters;
     }
 
     internal class EvalScript
     {
-        private List<EvalAction> actions;
+        private List<EvalAction> registeredActions;
+        private List<EvalAction> scriptedActions;
     }
 
     internal class Evaluator
     {
+        private Champion attacker;
+        private Champion defender;
+        private List<Champion> altDefenders;
+
         public void loadEvaluation(Architect architect)
         {
             string evalFilename = architect.configReader.configDict["EvalFilename"];
@@ -58,13 +66,20 @@ namespace UserFacing.Evaluation
 
                         if (key == "Attacker")
                         {
-                            Console.WriteLine(fullLine);
+                            string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
+                            attacker = architect.getChampionByName(championName.ToLower());
+                            attacker.setChampionLoadout(value);
                         }
                         else if (key == "Defender")
                         {
+                            string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
+                            defender = architect.getChampionByName(championName.ToLower());
+                            defender.setChampionLoadout(value);
                         }
                         else if (key == "DefenderAlt")
                         {
+                            //string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
+                            // = architect.getChampionByName(championName.ToLower());
                         }
 
                         continuedLine = "";

@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectLayer", "ObjectLayer\ObjectLayer.csproj", "{BC625EEA-4C3D-48AC-8E23-C9369ACA0A2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7774273A-2CA5-48D7-A9CF-589D2B3B8020} = {7774273A-2CA5-48D7-A9CF-589D2B3B8020}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigLayer", "ConfigLayer\ConfigLayer.csproj", "{7774273A-2CA5-48D7-A9CF-589D2B3B8020}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserFacing", "lolnums\UserFacing.csproj", "{B7AABAF4-92FC-43D6-A788-F3F0DED7B67D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7774273A-2CA5-48D7-A9CF-589D2B3B8020} = {7774273A-2CA5-48D7-A9CF-589D2B3B8020}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
