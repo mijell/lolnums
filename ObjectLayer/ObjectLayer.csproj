@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Items\Basic\" />
+    <Folder Include="Items\Epic\" />
+    <Folder Include="Items\Starter\" />
     <Folder Include="Profiles\" />
   </ItemGroup>
 

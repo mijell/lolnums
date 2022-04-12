@@ -4,6 +4,9 @@ using ObjectLayer.Items;
 using System.Collections.Generic;
 using System.IO;
 using ConfigLayer.Tools;
+using System;
+using ObjectLayer.Items.Mythic;
+using ObjectLayer.Items.Legendary;
 
 namespace ObjectLayer.Tools
 {
@@ -17,26 +20,6 @@ namespace ObjectLayer.Tools
         {
             configReader = new ConfigReader();
             champDict = new Dictionary<string, Champion>();
-        }
-
-        public Champion getFullChampion(string champion_name)
-        {
-            Champion rChampion = null;
-            if (champion_name == "akshan")
-            {
-                rChampion = new Akshan();
-            }
-
-            return rChampion;
-        }
-
-        public void initArchitect(string configFilename)
-        {
-            //Read in config
-            configReader.loadFile(configFilename);
-
-            //Initialize champion dictionary
-            initChampionDictionary();
         }
 
         public Champion getChampionByName(string championName)
@@ -62,13 +45,32 @@ namespace ObjectLayer.Tools
             return champion;
         }
 
+        public Champion getFullChampion(string champion_name)
+        {
+            Champion rChampion = null;
+            if (champion_name == "akshan")
+            {
+                rChampion = new Akshan();
+            }
+
+            return rChampion;
+        }
+
         public Item getItemByName(string itemName)
         {
             Item item = null;
 
-            if (itemName == "DivineBlunderer")
+            if (String.Equals("Eclipse", itemName, StringComparison.OrdinalIgnoreCase))
             {
-                //Get pranked idiot
+                item = new Eclipse();
+            }
+            else if (String.Equals("Botrk", itemName, StringComparison.OrdinalIgnoreCase))
+            {
+                item = new Botrk();
+            }
+            else if (String.Equals("SeryldasGrudge", itemName, StringComparison.OrdinalIgnoreCase))
+            {
+                item = new SeryldasGrudge();
             }
             else
             {
@@ -76,7 +78,18 @@ namespace ObjectLayer.Tools
                 item.name = itemName;
             }
 
+            item.init();
+
             return item;
+        }
+
+        public void initArchitect(string configFilename)
+        {
+            //Read in config
+            configReader.loadFile(configFilename);
+
+            //Initialize champion dictionary
+            initChampionDictionary();
         }
 
         private void initChampionDictionary()

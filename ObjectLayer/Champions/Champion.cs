@@ -47,13 +47,11 @@ namespace ObjectLayer.Champions
     {
         public BaseStats baseStats { get; set; }
 
+        public List<Item> items { get; set; }
+        public Architect myArchitect { get; set; }
         public string name { get; set; }
 
         public ChampionStatus status { get; set; }
-
-        public List<Item> items { get; set; }
-
-        public Architect myArchitect { get; set; }
 
         public Champion()
         {
@@ -83,6 +81,20 @@ namespace ObjectLayer.Champions
         public virtual Champion copyShallow()
         {
             return (Champion)this.MemberwiseClone();
+        }
+
+        public int getNumLegendaryItems()
+        {
+            int num = 0;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].itemClass == ItemClass.LEGENDARY_ITEM)
+                {
+                    num++;
+                }
+            }
+
+            return num;
         }
 
         public void initChampionFromJson(JProperty jProperty)
@@ -115,29 +127,6 @@ namespace ObjectLayer.Champions
                 baseStats.atkRange              =  Convert.ToDouble(statsObject.Property("attackrange").Value.ToString());
                 baseStats.movespeed             =  Convert.ToDouble(statsObject.Property("movespeed").Value.ToString());
             }
-        }
-
-        public void setChampionLevel(int _level)
-        {
-            status.level               = _level;
-            status.max_hp              = baseStats.base_hp + baseStats.hp_per_level * _level;
-            status.max_mana            = baseStats.base_mana + baseStats.mana_per_level * _level;
-            status.armor               = baseStats.base_armor + baseStats.armor_per_level * _level;
-            status.magic_resist        = baseStats.base_mr + baseStats.mr_per_level * _level;
-            status.attack_damage       = baseStats.base_ad + baseStats.ad_per_level * _level;
-            status.atkSpeed            = baseStats.base_atkSpeed + baseStats.atkSpeed_per_level * _level;
-
-            status.hp   = status.max_hp;
-            status.mana = status.max_mana;
-        }
-
-        public virtual void setChampionLoadout(string parameter_string)
-        {
-            string level = ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true);
-            setChampionLevel(Int32.Parse(level));
-
-            parseParameter("ChampionLevel", ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true));
-            parseMultiParameter("Item", ConfigReader.getMultiParamFromLine(parameter_string, "Item", true));
         }
 
         public virtual void parseMultiParameter(string key, List<string> multiValue)
@@ -180,6 +169,51 @@ namespace ObjectLayer.Champions
             Console.WriteLine("\tMR    - " + status.magic_resist);
             Console.WriteLine("\tItems - " + itemString);
         }
+
+        public void setChampionLevel(int _level)
+        {
+            int levelScale = _level - 1;
+            status.level               = _level;
+            status.max_hp              = baseStats.base_hp + baseStats.hp_per_level * levelScale;
+            status.max_mana            = baseStats.base_mana + baseStats.mana_per_level * levelScale;
+            status.armor               = baseStats.base_armor + baseStats.armor_per_level * levelScale;
+            status.magic_resist        = baseStats.base_mr + baseStats.mr_per_level * levelScale;
+            status.base_attack_damage  = baseStats.base_ad + baseStats.ad_per_level * levelScale;
+            status.atkSpeed            = baseStats.base_atkSpeed + baseStats.atkSpeed_per_level * levelScale;
+
+            status.hp   = status.max_hp;
+            status.mana = status.max_mana;
+        }
+
+        public virtual void setChampionLoadout(string parameter_string)
+        {
+            string level = ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true);
+            setChampionLevel(Int32.Parse(level));
+
+            parseParameter("ChampionLevel", ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true));
+            parseMultiParameter("Item", ConfigReader.getMultiParamFromLine(parameter_string, "Item", true));
+
+            int numLegendaryItems = getNumLegendaryItems();
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].setMythicStats(numLegendaryItems);
+            }
+
+            updateTotalStats();
+        }
+
+        public void updateTotalStats()
+        {
+            //Calculate bonus attack damage from items and runes
+            double bonus_ad = 0.0;
+            for (int i = 0; i < items.Count; i++)
+            {
+                bonus_ad += items[i].getBonusAttackDamage(status.base_attack_damage);
+            }
+
+            status.bonus_attack_damage = bonus_ad;
+            status.attack_damage = bonus_ad + status.base_attack_damage;
+        }
     }
 
     //A class defining the live parameters of a champion
@@ -189,6 +223,8 @@ namespace ObjectLayer.Champions
         public double armor;
         public double atkSpeed;
         public double attack_damage;
+        public double base_attack_damage;
+        public double bonus_attack_damage;
         public double hp;
         public double level;
         public double magic_resist;
