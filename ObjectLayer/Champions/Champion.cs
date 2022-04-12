@@ -178,7 +178,7 @@ namespace ObjectLayer.Champions
             status.max_mana            = baseStats.base_mana + baseStats.mana_per_level * levelScale;
             status.armor               = baseStats.base_armor + baseStats.armor_per_level * levelScale;
             status.magic_resist        = baseStats.base_mr + baseStats.mr_per_level * levelScale;
-            status.base_attack_damage  = baseStats.base_ad + baseStats.ad_per_level * levelScale;
+            status.base_attack_damage  = baseStats.base_ad + (baseStats.ad_per_level * levelScale * (0.7025 + 0.0175 * levelScale));
             status.atkSpeed            = baseStats.base_atkSpeed + baseStats.atkSpeed_per_level * levelScale;
 
             status.hp   = status.max_hp;
