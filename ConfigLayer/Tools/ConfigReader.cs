@@ -122,6 +122,10 @@ namespace ConfigLayer.Tools
                 {
                     returnString = line.Substring(start_index, sub_index - start_index);
                 }
+                else
+                {
+                    returnString = line.Substring(start_index);
+                }
             }
             else if (line.Contains(paramName + ":") || line.EndsWith(paramName))
             {

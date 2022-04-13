@@ -145,7 +145,7 @@ namespace ObjectLayer.Champions
                 {
                     if (key == "Item") { items.Add(myArchitect.getItemByName(value)); }
                     else if (key == "ChampionLevel") { setChampionLevel(Int32.Parse(value)); }
-                    else if (key == "tmp") { }
+                    else if (key == "Armor" || key == "MagicResist" || key == "Health") { setFixedStat(key, Convert.ToDouble(value)); }
                     else if (key == "example") { }
                 }
             }
@@ -154,44 +154,49 @@ namespace ObjectLayer.Champions
         public virtual void printSummary()
         {
             string itemString = "";
-            bool firstItem_flag = true;
+            bool first_flag = true;
             foreach (Item item in items)
             {
-                if (!firstItem_flag) { itemString += ", "; }
+                if (!first_flag) { itemString += "\n\t\t"; }
                 itemString += item.name;
-                firstItem_flag = false;
+                first_flag = false;
             }
 
             Console.WriteLine(name);
             Console.WriteLine("\tLevel - " + status.level);
-            Console.WriteLine("\tAD    - " + status.attack_damage);
-            Console.WriteLine("\tArmor - " + status.armor);
-            Console.WriteLine("\tMR    - " + status.magic_resist);
+            Console.WriteLine("\tAD    - " + status.total_attack_damage);
+            Console.WriteLine("\tArmor - " + status.total_armor);
+            Console.WriteLine("\tMR    - " + status.total_magic_resist);
+            Console.WriteLine("\tHP    - " + status.total_hp);
             Console.WriteLine("\tItems - " + itemString);
+        }
+
+        public double scaleStat(double base_stat, double growth_factor, int level_scale)
+        {
+            return base_stat + (growth_factor * level_scale * (0.7025 + 0.0175 * level_scale));
         }
 
         public void setChampionLevel(int _level)
         {
             int levelScale = _level - 1;
-            status.level               = _level;
-            status.max_hp              = baseStats.base_hp + baseStats.hp_per_level * levelScale;
-            status.max_mana            = baseStats.base_mana + baseStats.mana_per_level * levelScale;
-            status.armor               = baseStats.base_armor + baseStats.armor_per_level * levelScale;
-            status.magic_resist        = baseStats.base_mr + baseStats.mr_per_level * levelScale;
-            status.base_attack_damage  = baseStats.base_ad + (baseStats.ad_per_level * levelScale * (0.7025 + 0.0175 * levelScale));
-            status.atkSpeed            = baseStats.base_atkSpeed + baseStats.atkSpeed_per_level * levelScale;
-
-            status.hp   = status.max_hp;
-            status.mana = status.max_mana;
+            status.level                     = _level;
+            status.base_hp                  = scaleStat(baseStats.base_hp, baseStats.hp_per_level, levelScale);
+            status.base_mana                = scaleStat(baseStats.base_mana, baseStats.mana_per_level, levelScale);
+            status.base_armor               = scaleStat(baseStats.base_armor, baseStats.armor_per_level, levelScale);
+            status.base_magic_resist        = scaleStat(baseStats.base_mr, baseStats.mr_per_level, levelScale);
+            status.base_attack_damage       = scaleStat(baseStats.base_ad, baseStats.ad_per_level, levelScale);
+            status.base_atkSpeed            = scaleStat(baseStats.base_atkSpeed, baseStats.atkSpeed_per_level, levelScale);
         }
 
         public virtual void setChampionLoadout(string parameter_string)
         {
             string level = ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true);
-            setChampionLevel(Int32.Parse(level));
 
             parseParameter("ChampionLevel", ConfigReader.getParamFromLine(parameter_string, "ChampionLevel", "", true));
             parseMultiParameter("Item", ConfigReader.getMultiParamFromLine(parameter_string, "Item", true));
+            parseParameter("Armor", ConfigReader.getParamFromLine(parameter_string, "Armor", "", true));
+            parseParameter("MagicResist", ConfigReader.getParamFromLine(parameter_string, "MagicResist", "", true));
+            parseParameter("Health", ConfigReader.getParamFromLine(parameter_string, "Health", "", true));
 
             int numLegendaryItems = getNumLegendaryItems();
             for (int i = 0; i < items.Count; i++)
@@ -202,35 +207,69 @@ namespace ObjectLayer.Champions
             updateTotalStats();
         }
 
+        public void setFixedStat(string statString, double value)
+        {
+            if (statString == "Armor") { status.base_armor = value; }
+            else if (statString == "MagicResist") { status.base_magic_resist = value; }
+            else if (statString == "Health") { status.base_hp = value; }
+        }
+
         public void updateTotalStats()
         {
             //Calculate bonus attack damage from items and runes
-            double bonus_ad = 0.0;
+            double dump = 0.0;
+
             for (int i = 0; i < items.Count; i++)
             {
-                bonus_ad += items[i].getBonusAttackDamage(status.base_attack_damage);
+                dump                                 += items[i].getBonusStat("abilityHaste", 0);
+                status.bonus_attack_damage           += items[i].getBonusStat("ad", status.base_attack_damage);
+                status.bonus_ability_power           += items[i].getBonusStat("ap", status.base_ability_power);
+                status.bonus_armor                   += items[i].getBonusStat("armor", status.base_armor);
+                dump                                 += items[i].getBonusStat("armorPen", 0);
+                status.bonus_atkSpeed                += items[i].getBonusStat("atkSpeed", status.base_atkSpeed);
+                status.bonus_hp                      += items[i].getBonusStat("health", status.base_hp);
+                dump                                 += items[i].getBonusStat("lethality", 0);
+                dump                                 += items[i].getBonusStat("lifesteal", 0);
+                status.bonus_magic_resist            += items[i].getBonusStat("mr", status.base_magic_resist);
+                dump                                 += items[i].getBonusStat("omnivamp", 0);
             }
 
-            status.bonus_attack_damage = bonus_ad;
-            status.attack_damage = bonus_ad + status.base_attack_damage;
+            status.total_attack_damage = status.bonus_attack_damage + status.base_attack_damage;
+            status.total_ability_power = status.bonus_ability_power + status.base_ability_power;
+            status.total_armor         = status.bonus_armor         + status.base_armor;
+            status.total_magic_resist  = status.bonus_magic_resist  + status.base_magic_resist;
+            status.total_hp            = status.bonus_hp            + status.base_hp;
+            status.total_atkSpeed      = status.bonus_atkSpeed      + status.base_atkSpeed;
         }
     }
 
     //A class defining the live parameters of a champion
     public class ChampionStatus
     {
-        public double ability_power;
-        public double armor;
-        public double atkSpeed;
-        public double attack_damage;
+        public double base_ability_power;
+        public double base_armor;
+        public double base_atkSpeed;
         public double base_attack_damage;
+        public double base_hp;
+        public double base_magic_resist;
+        public double base_mana;
+        public double bonus_ability_power;
+        public double bonus_armor;
+        public double bonus_atkSpeed;
         public double bonus_attack_damage;
-        public double hp;
+        public double bonus_hp;
+        public double bonus_magic_resist;
+        public double bonus_mana;
+        public double current_hp;
+        public double current_mana;
         public double level;
-        public double magic_resist;
-        public double mana;
-        public double max_hp;
-        public double max_mana;
+        public double total_ability_power;
+        public double total_armor;
+        public double total_atkSpeed;
+        public double total_attack_damage;
+        public double total_hp;
+        public double total_magic_resist;
+        public double total_mana;
 
         public ChampionStatus copyShallow()
         {

@@ -75,7 +75,7 @@ namespace ObjectLayer.Tools
             else
             {
                 item = new Item();
-                item.name = itemName;
+                item.name = itemName + " - ??";
             }
 
             item.init();
@@ -105,6 +105,11 @@ namespace ObjectLayer.Tools
 
                 champDict[nChampion.name.ToLower()] = nChampion;
             }
+
+            //Add target dummy
+            Champion tdChampion = new Champion();
+            tdChampion.name = "Target Dummy";
+            champDict["targetdummy"] = tdChampion;
         }
     }
 }
