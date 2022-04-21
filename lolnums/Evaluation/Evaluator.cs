@@ -42,6 +42,8 @@ namespace UserFacing.Evaluation
         private Champion defender;
         private List<Champion> altDefenders;
 
+        private List<EvalScript> evalScripts;
+
         public void loadEvaluation(Architect architect)
         {
             string evalFilename = architect.configReader.configDict["EvalFilename"];
@@ -86,6 +88,9 @@ namespace UserFacing.Evaluation
                         {
                             //string championName = ConfigReader.getParamFromLine(value, "ChampionName", "", true);
                             // = architect.getChampionByName(championName.ToLower());
+                        }
+                        else if (key == "Script")
+                        {
                         }
 
                         continuedLine = "";

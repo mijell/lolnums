@@ -13,3 +13,25 @@ Defender ChampionName="TahmKench" \
         :help="holymoly:cracka" \
         :Item1="Zhonya" \
         :HasNoLife
+
+
+Action Name="HalfQ" \
+        :action="Q" \
+        :firstHit=true \
+        :secondHit=false
+
+Script Name="FullAuto" \
+        :addAction="AutoAttack" \
+        :addAction="PassiveAuto"
+
+Script Name="Burst1" \
+        :addScript="FullAuto" \
+        :addAction="HalfQ"
+
+Script Name="Burst2" \
+        :addAction="Q" \
+        :addAction="AutoAttack"
+
+Script Name="Main" \
+        :addScript="Burst1" \
+        :addScript="Burst2"
